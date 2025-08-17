@@ -2,7 +2,7 @@ class Balloon {
 	constructor(x, y) {
 		this.x = x;
 		this.y = y;
-		this.r = 20; // 半径
+		this.r = 20*0.8; // 半径
 		this.segments = 100;
 	}
 
@@ -104,7 +104,7 @@ a = 0
 c = 0
 function animate() {
 	const balloon = new Balloon(25, 25);
-	const balls = Array.from({ length:6 }, () => new Ball(50 / 2, 50 / 2));
+	const balls = Array.from({ length:6 }, () => new Ball(25, 25));
 
 	function frame() {
 		//ボールを動かす
