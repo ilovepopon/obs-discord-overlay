@@ -2,7 +2,7 @@ class Balloon {
 	constructor(x, y) {
 		this.x = x;
 		this.y = y;
-		this.r = 80; // 半径
+		this.r = 20; // 半径
 		this.segments = 100;
 	}
 
@@ -14,9 +14,9 @@ class Balloon {
 	rubberPath(balls) {
 		let d = "";
 
-		// 追加: R の物理上限（この値を超えないようにする）
-		const box = 240;
-		const Rmax = Math.min(this.x, this.y, box - this.x, box - this.y) - 0.5;
+		// // 追加: R の物理上限（この値を超えないようにする）
+		// const box = 240;
+		// const Rmax = Math.min(this.x, this.y, box - this.x, box - this.y) - 0.5;
 
 		for (let i = 0; i <= this.segments; i++) {
 			const theta = (2 * Math.PI * i) / this.segments;
@@ -31,11 +31,11 @@ class Balloon {
 				const dx = bx - x0;
 				const dy = by - y0;
 				const dist2 = dx * dx + dy * dy;
-				R += 20 * Math.exp(-dist2 / 2000); // ガウス関数
+				R += 10 * Math.exp(-dist2 / 200); // ガウス関数
 			});
 
-			// 追加: 上限でクリップ（これで絶対にはみ出さない）
-			if (R > Rmax) R = Rmax;
+			// // 追加: 上限でクリップ（これで絶対にはみ出さない）
+			// if (R > Rmax) R = Rmax;
 
 			// 最終座標
 			const x = this.x + R * Math.cos(theta);
@@ -52,9 +52,9 @@ class Ball {
 	constructor(x, y) {
 		this.x = x;
 		this.y = y;
-		this.vx = (Math.random() - 0.5) * 2; // -2〜+2 のxのランダム速度
-		this.vy = (Math.random() - 0.5) * 2; // -2〜+2 のyのランダム速度
-		this.r = 18
+		this.vx = (Math.random() - 0.5) * 1; // -2〜+2 のxのランダム速度
+		this.vy = (Math.random() - 0.5) * 1; // -2〜+2 のyのランダム速度
+		this.r = 10
 	}
 
 	/** * ボールの位置を更新する
@@ -103,8 +103,8 @@ class Ball {
 a = 0
 c = 0
 function animate() {
-	const balloon = new Balloon(120, 120);
-	const balls = Array.from({ length:6 }, () => new Ball(240 / 2, 240 / 2));
+	const balloon = new Balloon(25, 25);
+	const balls = Array.from({ length:6 }, () => new Ball(50 / 2, 50 / 2));
 
 	function frame() {
 		//ボールを動かす
