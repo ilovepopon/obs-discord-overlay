@@ -1,22 +1,18 @@
-class Balloon {
+class Blob {
 	constructor(x, y) {
 		this.x = x;
 		this.y = y;
-		this.r = 20*0.8; // 半径
+		this.r = 40; // 半径
 		this.segments = 100;
 	}
 
 	/**
-	 * ゴム風船のパスを生成する
+	 * 泡のパスを生成する
 	 * @param {Ball[]} balls - ボールの配列
 	 * @returns {string} SVGパスデータ
 	 */
 	rubberPath(balls) {
 		let d = "";
-
-		// // 追加: R の物理上限（この値を超えないようにする）
-		// const box = 240;
-		// const Rmax = Math.min(this.x, this.y, box - this.x, box - this.y) - 0.5;
 
 		for (let i = 0; i <= this.segments; i++) {
 			const theta = (2 * Math.PI * i) / this.segments;
@@ -31,17 +27,15 @@ class Balloon {
 				const dx = bx - x0;
 				const dy = by - y0;
 				const dist2 = dx * dx + dy * dy;
-				R += 10 * Math.exp(-dist2 / 200); // ガウス関数
+				R += 20 * Math.exp(-dist2 / 2000); // ガウス関数
 			});
 
-			// // 追加: 上限でクリップ（これで絶対にはみ出さない）
-			// if (R > Rmax) R = Rmax;
 
 			// 最終座標
-			const x = this.x + R * Math.cos(theta);
-			const y = this.y + R * Math.sin(theta);
+			const x = ~~((this.x + R * Math.cos(theta)) * 100) / 100;
+			const y = ~~((this.y + R * Math.sin(theta)) * 100) / 100;
 
-			d += (i === 0 ? `M ${~~(x*100) / 100},${~~(y*100) / 100} ` : `L ${~~(x*100) / 100},${~~(y*100) / 100} `);
+			d += (i === 0 ? `M ${x},${y} ` : `L ${x},${y} `);
 		}
 		d += "Z";
 		return d;
@@ -62,39 +56,49 @@ class Ball {
 	 * @param {number} dy - y方向の変位
 	 * */
 	update(cx, cy, r) {
-		
+		// ボールの位置を更新
 		this.x += this.vx;
 		this.y += this.vy;
+
 		// 内壁との衝突判定（中心からの距離）
 		const dx = this.x - cx;
 		const dy = this.y - cy;
+		
+		// 距離の計算
 		let dist = Math.hypot(dx, dy);
-		console.log(dist)
+
 		// 法線（中心→ボール方向）
 		const nx = dx / dist;
 		const ny = dy / dist;
 
-		// 速度を法線で反射（v' = v - 2(v·n)n）
+		// ボールの速度ベクトルと法線の内積
 		const dot = this.vx * nx + this.vy * ny;
-		const limit = r - this.r; // 内壁の有効半径
 
+		// 内壁の有効半径
+		const limit = r - this.r;
+
+		// 衝突判定
 		if (dist > limit) {
 			
 			// 壁の内側に位置を戻す（めり込み解消）
 			this.x = cx + nx * (limit - 0.5);
 			this.y = cy + ny * (limit - 0.5);
 
+			// 法線が外側を向いていた場合うまく反射させる
 			if (dot > 0) {
-				const randomAngle = (Math.random() - 0.5) *(Math.PI / 6) + Math.PI; // ランダムな角度
+				// ランダムな角度と反転
+				const randomAngle = (Math.random() - 0.5) *(Math.PI / 6) + Math.PI; 
+
+				// 反射ベクトルの計算
 				const cos = Math.cos(randomAngle);
 				const sin = Math.sin(randomAngle);
 				const rx = nx * cos - ny * sin;
 				const ry = nx * sin + ny * cos;
 
-				const speed = Math.hypot(this.vx, this.vy) || 2; // ゼロ割回避で最低速2
+				// 速度の大きさを維持
+				const speed = Math.hypot(this.vx, this.vy)
 				this.vx = rx * speed;
 				this.vy = ry * speed;4
-				console.log(speed)
 			}
 		}
 	}
@@ -103,23 +107,19 @@ class Ball {
 a = 0
 c = 0
 function animate() {
-	const balloon = new Balloon(25, 25);
-	const balls = Array.from({ length:6 }, () => new Ball(25, 25));
+	const blob = new Blob(125, 125);
+	const balls = Array.from({ length:6 }, () => new Ball(125, 125));
 
 	function frame() {
 		//ボールを動かす
 		balls.forEach((b, i) => {
-			b.update(balloon.x, balloon.y, balloon.r);
+			b.update(blob.x, blob.y, blob.r);
 		});
 
-		const pathData = balloon.rubberPath(balls);
+		const pathData = blob.rubberPath(balls);
 		document.querySelector(".circle").style.clipPath = `path('${pathData}')`;
 
-		if (a % 10 === 0 && c < 100) {
-			document.querySelector(".debug").textContent += `${c}%{clip-path: path("${pathData}");}\n`;
-			c++;
-		}
-		a++;
+		// 次のフレームをリクエスト
 		requestAnimationFrame(frame);
 	}
 

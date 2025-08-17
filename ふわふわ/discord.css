@@ -1,0 +1,83 @@
+@import url("https://cdn.jsdelivr.net/gh/ilovepopon/obs-discord-overlay@main/%E3%81%B5%E3%82%8F%E3%81%B5%E3%82%8F/keyframes.css");
+
+:root{
+	--color1:radial-gradient(circle at 35% 30%, #60a5fa, #22d3ee 60%, #a78bfa);
+	--color2:radial-gradient(circle at 35% 30%, #ef4444, #f97316 60%, #f59e0b);
+}
+
+
+.Voice_voiceState__OCoZh {
+	position: relative;
+	z-index: 9999;
+	height: 50px;
+	margin: 30px;
+	overflow: visible;
+	border: none !important;
+	opacity: 0.6;
+	transition: opacity 0.3s ease-in-out;
+}
+
+
+.Voice_voiceState__OCoZh::before {
+	background: var(--color1);
+	animation: blob1 5s infinite;
+}
+
+.Voice_voiceState__OCoZh::after {
+	background: var(--color2);
+	animation: blob2 5s infinite;
+}
+
+.Voice_voiceState__OCoZh::before,
+.Voice_voiceState__OCoZh::after {
+	position: absolute;
+	top: 25px;
+	left: 25px;
+	z-index: -1;
+	width: 80px;
+	height: 80px;
+	clip-path: none;
+	overflow: visible;
+	display: block;
+	isolation: isolate;
+	transform: translate(-50%, -50%) scale(0.3);
+	transition: transform 0.5s ease-in-out;
+	transform-box: fill-box;
+	animation-play-state: paused;
+	content: '';
+}
+
+
+.Voice_avatar__htiqH {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	width: 50px;
+	height: 50px;
+	border: none !important;
+	object-fit: cover;
+	border-radius: 50%;
+	transform: scale(0.9);
+	transition: transform 0.3s ease-in-out;
+}
+
+
+.Voice_user__8fGwX {
+	padding-left: 61px;
+}
+
+
+.Voice_voiceState__OCoZh.wrapper_speaking {
+	opacity: 1;
+}
+
+.Voice_voiceState__OCoZh.wrapper_speaking .Voice_avatar__htiqH {
+	transform: scale(1);
+}
+
+.Voice_voiceState__OCoZh.wrapper_speaking::before,
+.Voice_voiceState__OCoZh.wrapper_speaking::after {
+	animation-play-state: running;
+	transform: translate(-50%, -50%) scale(1);
+}

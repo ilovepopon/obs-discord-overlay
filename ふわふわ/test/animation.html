@@ -8,89 +8,23 @@
 	<style>
 		@import url(./keyframe.css);
 		.circle {
-			width: 240px;
-			height: 240px;
+			width: 250px;
+			height: 250px;
 			position:relative;
 			background: radial-gradient(circle at 35% 30%, #60a5fa, #22d3ee 60%, #a78bfa);
-			clip-path: ;
+			clip-path: none;
 			overflow:visible
 			/* just for the box corners outside the clip */
 		}
-		.circle::before {
-			content: '';
-			position: absolute;
-			top: 120px;
-			left: 120px;
-			width: 50px;
-			height: 50px;
-			transform: translate(-50%, -50%);
-			border-radius: 50%;
-			background: #60a5fa;
-		}
-
+		
 		.blob{
-			width: 240px;
-			height: 240px;
-			position:relative;
-			z-index: 9999;
-			display: block;
-			overflow:visible;
-			margin-left:40px;
-			margin-top:40px;
-		}
-
-		.blob img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			border-radius: 50%;
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: 1;
-		}
-
-		.blob::before {
-			content: '';
-			position: absolute;
 			width: 240px;
 			height: 240px;
 			background: radial-gradient(circle at 35% 30%, #60a5fa, #22d3ee 60%, #a78bfa);
 			clip-path: path("M 202.26,120 L 202.1,125.16 L 201.61,130.3 L 200.79,135.41 L 199.66,140.45 L 198.22,145.41 L 196.46,150.27 L 194.4,155.01 L 192.05,159.61 L 189.42,164.05 L 186.51,168.32 L 183.34,172.4 L 179.92,176.27 L 176.27,179.92 L 172.39,183.33 L 168.31,186.49 L 164.03,189.39 L 159.59,192.01 L 154.98,194.35 L 150.24,196.4 L 145.39,198.14 L 140.43,199.57 L 135.39,200.7 L 130.29,201.5 L 125.15,201.98 L 120,202.14 L 114.84,201.97 L 109.7,201.48 L 104.6,200.67 L 99.57,199.55 L 94.62,198.1 L 89.76,196.35 L 85.03,194.3 L 80.43,191.96 L 75.99,189.33 L 71.73,186.43 L 67.65,183.27 L 63.78,179.86 L 60.13,176.21 L 56.72,172.34 L 53.56,168.27 L 50.65,164 L 48.03,159.56 L 45.68,154.96 L 43.63,150.23 L 41.88,145.38 L 40.44,140.42 L 39.31,135.39 L 38.5,130.29 L 38.01,125.15 L 37.84,120 L 38,114.84 L 38.48,109.7 L 39.28,104.6 L 40.4,99.56 L 41.84,94.6 L 43.58,89.74 L 45.63,85 L 47.97,80.4 L 50.59,75.95 L 53.49,71.68 L 56.65,67.59 L 60.06,63.71 L 63.71,60.06 L 67.58,56.64 L 71.66,53.47 L 75.93,50.56 L 80.37,47.93 L 84.98,45.58 L 89.72,43.52 L 94.58,41.76 L 99.54,40.32 L 104.58,39.19 L 109.68,38.37 L 114.83,37.88 L 119.99,37.72 L 125.16,37.88 L 130.31,38.36 L 135.41,39.17 L 140.46,40.29 L 145.42,41.73 L 150.29,43.48 L 155.03,45.53 L 159.64,47.88 L 164.09,50.51 L 168.37,53.41 L 172.45,56.58 L 176.33,60 L 179.99,63.66 L 183.41,67.54 L 186.57,71.62 L 189.48,75.9 L 192.11,80.35 L 194.45,84.96 L 196.5,89.7 L 198.25,94.57 L 199.69,99.53 L 200.82,104.58 L 201.62,109.68 L 202.11,114.83 L 202.26,119.99 Z");
 			overflow:visible;
 			animation: blob1 5s infinite;
-			animation-play-state: paused;
-			z-index: -1;
-			transform:scale(0.6);
-			transition:transform 0.5s ease-in-out;
-			transform-box: fill-box;
-			isolation: isolate;
-			display: block;
 		}
-
-		.blob::after {
-			content: '';
-			position: absolute;
-			width: 240px;
-			height: 240px;
-			background: radial-gradient(circle at 35% 30%, #ef4444, #f97316 60%, #f59e0b);
-			clip-path: path("M 202.26,120 L 202.1,125.16 L 201.61,130.3 L 200.79,135.41 L 199.66,140.45 L 198.22,145.41 L 196.46,150.27 L 194.4,155.01 L 192.05,159.61 L 189.42,164.05 L 186.51,168.32 L 183.34,172.4 L 179.92,176.27 L 176.27,179.92 L 172.39,183.33 L 168.31,186.49 L 164.03,189.39 L 159.59,192.01 L 154.98,194.35 L 150.24,196.4 L 145.39,198.14 L 140.43,199.57 L 135.39,200.7 L 130.29,201.5 L 125.15,201.98 L 120,202.14 L 114.84,201.97 L 109.7,201.48 L 104.6,200.67 L 99.57,199.55 L 94.62,198.1 L 89.76,196.35 L 85.03,194.3 L 80.43,191.96 L 75.99,189.33 L 71.73,186.43 L 67.65,183.27 L 63.78,179.86 L 60.13,176.21 L 56.72,172.34 L 53.56,168.27 L 50.65,164 L 48.03,159.56 L 45.68,154.96 L 43.63,150.23 L 41.88,145.38 L 40.44,140.42 L 39.31,135.39 L 38.5,130.29 L 38.01,125.15 L 37.84,120 L 38,114.84 L 38.48,109.7 L 39.28,104.6 L 40.4,99.56 L 41.84,94.6 L 43.58,89.74 L 45.63,85 L 47.97,80.4 L 50.59,75.95 L 53.49,71.68 L 56.65,67.59 L 60.06,63.71 L 63.71,60.06 L 67.58,56.64 L 71.66,53.47 L 75.93,50.56 L 80.37,47.93 L 84.98,45.58 L 89.72,43.52 L 94.58,41.76 L 99.54,40.32 L 104.58,39.19 L 109.68,38.37 L 114.83,37.88 L 119.99,37.72 L 125.16,37.88 L 130.31,38.36 L 135.41,39.17 L 140.46,40.29 L 145.42,41.73 L 150.29,43.48 L 155.03,45.53 L 159.64,47.88 L 164.09,50.51 L 168.37,53.41 L 172.45,56.58 L 176.33,60 L 179.99,63.66 L 183.41,67.54 L 186.57,71.62 L 189.48,75.9 L 192.11,80.35 L 194.45,84.96 L 196.5,89.7 L 198.25,94.57 L 199.69,99.53 L 200.82,104.58 L 201.62,109.68 L 202.11,114.83 L 202.26,119.99 Z");
-			overflow:visible;
-			animation: blob2 5s infinite;
-			animation-play-state: paused;
-			z-index: -1;
-			transform:scale(0.6);
-			transition:transform 0.5s ease-in-out;
-			transform-box: fill-box;
-			isolation: isolate;
-			display: block;
-		}
-
-		.blob:hover::before, .blob:hover::after {
-			animation-play-state: running;
-			transform:scale(1.5);
-		}
-
 		
 
 	</style>
@@ -98,10 +32,8 @@
 
 <body>
 	<div class="circle"></div>
-	<div class="blob">
-		<img src="https://cdn.discordapp.com/avatars/888063397114052680/8f0cea84ccaa4e62b6acf3f1c7215496.jpg" >
-	</div>
-	<div class="debug"></div>
+	<div class="blob"></div>
+	
 	<script src="./animation.js"></script>
 	<script>
 
