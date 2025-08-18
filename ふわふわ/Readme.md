@@ -69,6 +69,22 @@ While it is more challenging within Discord’s overlay, it is also possible to 
 
 The code can be found in the [test directory](./test).  
 
+## Credit
+
+もしこのカスタムCSSを配信等で使用する場合は、クレジット表記をしていただけたらうれしいです。
+
+形式は自由です。  
+
+Discord Voice Chat Overlay CSS by [@ilovepopon](https://x.com/ilovepopon)
+
+---
+
+If you use this custom CSS in your stream or video, I would appreciate it if you could include a credit. 
+
+The format is flexible.  
+
+Discord Voice Chat Overlay CSS by [@ilovepopon](https://x.com/ilovepopon)
+
 
 ## Disclaimer 
 
