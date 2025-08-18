@@ -31,10 +31,29 @@ CSS overlay with bubbly animation background for Discord voice chat in OBS.
    ~~（ChatGPT先生に投げればやってくれるよ）~~
    ```css
    :root{
-	--color1:radial-gradient(circle at 35% 30%, #60a5fa, #22d3ee 60%, #a78bfa);
-	--color2:radial-gradient(circle at 35% 30%, #ef4444, #f97316 60%, #f59e0b);
+	   --color-before: radial-gradient(circle at 35% 30%, #3ba53b, #a3e635 60%, #bef264);
+	   --color-after: radial-gradient(circle at 35% 30%, #3ba53b, #4fd64f 60%, #2a7a2a);
+	   --color-owner-before: radial-gradient(circle at 35% 30%, #a78bfa, #60a5fa 60%, #22d3ee);
+	   --color-owner-after: radial-gradient(circle at 35% 30%, #f97316, #f59e0b 60%, #ef4444);
    }
    ```
+
+> [!TIP]
+> 各ユーザごとに色を変えることも可能です。
+> 
+> `/* ----- 個別設定 ここから ----- */`から`/* ----- 個別設定 ここまで ----- */`と書かれてるところに以下のコードをユーザーごとに書いてください。
+>
+> `"USER_ID_HERE"`のところにはDiscordのユーザーIDが入ります。
+> 
+> ```css
+> .Voice_voiceState__OCoZh[data-userid="USER_ID_HERE"]::before{
+>     background: radial-gradient(circle at 35% 30%, #60a5fa, #22d3ee 60%, #a78bfa);
+> }
+>
+> .Voice_voiceState__OCoZh[data-userid="USER_ID_HERE"]::after {
+>     background: radial-gradient(circle at 35% 30%, #f97316, #f59e0b 60%, #ef4444);
+> }
+> ```
 
 --- 
 
