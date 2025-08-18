@@ -1,4 +1,4 @@
-# Custom CSS in Discord Overlay Pages
+# Custom CSS for Discord Voice Chat Overlay in OBS
 
 あわあわ風のアニメーション背景がついた、OBS向けDiscordボイスチャットオーバーレイ用のCSSです。
 
@@ -68,3 +68,10 @@ You can create your own `keyframes` to build this animation.
 While it is more challenging within Discord’s overlay, it is also possible to generate the background bubbles using `requestAnimationFrame()`.  
 
 The code can be found in the [test directory](./test).  
+
+
+## Disclaimer 
+
+This project is not affiliated with or endorsed by Discord Inc. 
+
+Discord and its logo/brand colors are trademarks of Discord Inc.
