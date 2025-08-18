@@ -5,7 +5,7 @@
 	--color-owner-after: radial-gradient(circle at 35% 30%, #f97316, #f59e0b 60%, #ef4444);
 }
 
-.Voice_voiceState__OCoZh {
+.voice_state {
 	position: relative;
 	z-index: 9999;
 	height: 50px;
@@ -16,31 +16,34 @@
 	transition: opacity 0.3s ease-in-out;
 }
 
-.Voice_voiceState__OCoZh::before {
+.voice_state::before {
 	background: var(--color-before);
 	animation: blob1 5s infinite;
 }
 
-.Voice_voiceState__OCoZh::after {
+.voice_state::after {
 	background: var(--color-after);
 	animation: blob2 5s infinite;
 }
 
-.Voice_voiceState__OCoZh.is_widget_owner::before {
+.voice_state.is_widget_owner::before {
 	background: var(--color-owner-before);
 }
 
-.Voice_voiceState__OCoZh.is_widget_owner::after {
+.voice_state.is_widget_owner::after {
 	background: var(--color-owner-after);
 }
 
+/* ----- Individual Settings Start ----- */
 /* ----- 個別設定 ここから ----- */
 
 
 /* ----- 個別設定 ここまで ----- */
+/* ----- Individual Settings End ----- */
 
-.Voice_voiceState__OCoZh::before,
-.Voice_voiceState__OCoZh::after {
+
+.voice_state::before,
+.voice_state::after {
 	position: absolute;
 	top: 25px;
 	left: 25px;
@@ -59,7 +62,7 @@
 }
 
 
-.Voice_avatar__htiqH {
+.voice_avatar {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -74,21 +77,21 @@
 }
 
 
-.Voice_user__8fGwX {
+.voice_username {
 	padding-left: 61px;
 }
 
 
-.Voice_voiceState__OCoZh.wrapper_speaking {
+.voice_state.wrapper_speaking {
 	opacity: 1;
 }
 
-.Voice_voiceState__OCoZh.wrapper_speaking .Voice_avatar__htiqH {
+.voice_state.wrapper_speaking .voice_avatar {
 	transform: scale(1);
 }
 
-.Voice_voiceState__OCoZh.wrapper_speaking::before,
-.Voice_voiceState__OCoZh.wrapper_speaking::after {
+.voice_state.wrapper_speaking::before,
+.voice_state.wrapper_speaking::after {
 	animation-play-state: running;
 	transform: translate(-50%, -50%) scale(1);
 }
