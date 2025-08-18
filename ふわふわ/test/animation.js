@@ -98,15 +98,17 @@ class Ball {
 				// 速度の大きさを維持
 				const speed = Math.hypot(this.vx, this.vy)
 				this.vx = rx * speed;
-				this.vy = ry * speed;4
+				this.vy = ry * speed;
 			}
 		}
 	}
 }
 
-a = 0
-c = 0
+
 function animate() {
+	a = 0
+    c = 0
+	tmp0 = ""
 	const blob = new Blob(125, 125);
 	const balls = Array.from({ length:6 }, () => new Ball(125, 125));
 
@@ -118,6 +120,21 @@ function animate() {
 
 		const pathData = blob.rubberPath(balls);
 		document.querySelector(".circle").style.clipPath = `path('${pathData}')`;
+
+		// 10フレームごとにデバッグ出力（最大１００個）
+		if (a % 10 === 0 && c < 100) {
+			document.querySelector(".debug").innerHTML += `${c}%{clip-path: path("${pathData}");} <br/>`;
+
+			// 初期値を保存
+			if(c === 0) {tmp0 = pathData};
+
+			c++;
+
+		}else if (c === 100) {
+			document.querySelector(".debug").innerHTML += `${c}%{clip-path: path("${tmp0}");} <br/>`;
+			c++;
+		}
+		a++;
 
 		// 次のフレームをリクエスト
 		requestAnimationFrame(frame);
